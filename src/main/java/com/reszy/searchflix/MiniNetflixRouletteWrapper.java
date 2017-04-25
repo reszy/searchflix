@@ -7,6 +7,7 @@ import java.net.URL;
 import java.nio.charset.Charset;
 
 /**
+ * Wrapper for NetflixRoullete
  * Created by Rafał on 25.04.2017.
  */
 public class MiniNetflixRouletteWrapper {
@@ -37,7 +38,6 @@ public class MiniNetflixRouletteWrapper {
 
         return message;
     }
-
 
     static String readJsonFromUrl(String url) throws IOException, JSONException {
         InputStream is = (new URL(url)).openStream();

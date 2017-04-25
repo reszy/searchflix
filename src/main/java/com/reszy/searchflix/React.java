@@ -10,6 +10,7 @@ import java.io.Reader;
 import java.util.List;
 
 /**
+ * React server side redraw class
  * Created by Rafał on 23.04.2017.
  */
 public class React {

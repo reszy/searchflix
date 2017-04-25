@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
+ * Controller for server react communication
  * Created by Rafał on 24.04.2017.
  */
 @RestController

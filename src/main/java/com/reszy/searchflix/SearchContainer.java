@@ -1,6 +1,7 @@
 package com.reszy.searchflix;
 
 /**
+ * Data container for sending form from react to server
  * Created by Rafał on 25.04.2017.
  */
 public class SearchContainer {

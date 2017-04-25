@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Main controller
  * Created by Rafał on 23.04.2017.
  */
 @Controller

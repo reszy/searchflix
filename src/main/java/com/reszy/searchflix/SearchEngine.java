@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Service to find movies in outsourced API
  * Created by Rafał on 23.04.2017.
  */
 @Service

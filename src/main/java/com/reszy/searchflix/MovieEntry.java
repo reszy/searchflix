@@ -1,6 +1,7 @@
 package com.reszy.searchflix;
 
 /**
+ * Data representing one movie entry
  * Created by Rafał on 23.04.2017.
  */
 public class MovieEntry {
