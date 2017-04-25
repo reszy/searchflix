@@ -27,8 +27,8 @@ public class SearchEngineController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public List<MovieEntry> search(String query) {
-        return service.search(query);
+    public List<MovieEntry> search(SearchContainer search) {
+        return service.search(search.getSearch());
     }
 
 }

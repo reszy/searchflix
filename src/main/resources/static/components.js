@@ -53,21 +53,17 @@ var SearchBox = React.createClass({
     displayName: "SearchBox",
 
     handleSearchSubmit: function handleSearchSubmit(search) {
-        var comments = this.state.data;
-        query.push(search);
-        this.setState({ data: query }, function () {
-            $.ajax({
-                url: this.props.url,
-                dataType: 'json',
-                type: 'POST',
-                data: movie,
-                success: function (data) {
-                    this.setState({ data: data });
-                }.bind(this),
-                error: function (xhr, status, err) {
-                    console.error(this.props.url, status, err.toString());
-                }.bind(this)
-            });
+        $.ajax({
+            url: this.props.url,
+            dataType: 'json',
+            type: 'POST',
+            data: search,
+            success: function (data) {
+                this.setState({ data: data });
+            }.bind(this),
+            error: function (xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+            }.bind(this)
         });
     },
     loadResultsFromServer: function loadResultsFromServer() {
@@ -87,7 +83,6 @@ var SearchBox = React.createClass({
     },
     componentDidMount: function componentDidMount() {
         this.loadResultsFromServer();
-        setInterval(this.loadResultsFromServer, this.props.pollInterval);
     },
     render: function render() {
         return React.createElement(
@@ -96,9 +91,9 @@ var SearchBox = React.createClass({
             React.createElement(
                 "h1",
                 null,
-                "Search flix"
+                "SearchFlix"
             ),
-            React.createElement(SearchBar, { onCommentSubmit: this.handleCommentSubmit }),
+            React.createElement(SearchBar, { onSearchSubmit: this.handleSearchSubmit }),
             React.createElement(MovieList, { data: this.state.data })
         );
     }

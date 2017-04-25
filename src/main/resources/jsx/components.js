@@ -15,7 +15,7 @@ var SearchBar = React.createClass({
         return (
             <form className="searchBar" onSubmit={this.handleSubmit}>
                 <input type="text" placeholder="Search" ref="search" />
-                <input type="submit" value="Sreach" />
+                <input type="submit" value="Search" />
             </form>
         );
     }
@@ -41,14 +41,14 @@ var MovieList = React.createClass({
 
 var SearchBox = React.createClass({
     handleSearchSubmit: function (search) {
-        var comments = this.state.data;
+        var query = this.state.data;
         query.push(search);
         this.setState({data: query}, function () {
             $.ajax({
                 url: this.props.url,
                 dataType: 'json',
                 type: 'POST',
-                data: movie,
+                data: search,
                 success: function (data) {
                     this.setState({data: data});
                 }.bind(this),
@@ -75,13 +75,12 @@ var SearchBox = React.createClass({
     },
     componentDidMount: function () {
         this.loadResultsFromServer();
-        setInterval(this.loadResultsFromServer, this.props.pollInterval);
     },
     render: function () {
         return (
             <div className="movieBox">
                 <h1>SearchFlix</h1>
-                <SearchBar onCommentSubmit={this.handleCommentSubmit} />
+                <SearchBar onSearchSubmit={this.handleSearchSubmit} />
                 <MovieList data={this.state.data} />
             </div>
         );

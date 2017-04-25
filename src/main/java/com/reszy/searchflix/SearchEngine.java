@@ -1,13 +1,12 @@
 package com.reszy.searchflix;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.net.codeusa.NetflixRoulette;
 
 /**
  * Created by Rafał on 23.04.2017.
@@ -21,16 +20,33 @@ public class SearchEngine {
     }
 
     public SearchEngine(){
-        movies.add(new MovieEntry("x","http://x3.wykop.pl/cdn/c3201142/comment_40LkFHlJHp36E66iaRawwKGNUqX721h7,w400.jpg"));
+    }
+
+    private void addJsonsToList(JSONArray array){
+        for(int i =0; i<array.length(); i++){
+            JSONObject singleJson = array.getJSONObject(i);
+            movies.add(new MovieEntry(singleJson.getString("show_title"),singleJson.getString("poster")));
+        }
     }
 
     public List<MovieEntry> search(String query) {
-        NetflixRoulette nflxr = new NetflixRoulette();
+        System.out.print("Query was send:[ " + query + " ]\n");
+        movies.clear();
+        MiniNetflixRouletteWrapper nflxr = new MiniNetflixRouletteWrapper();
         try {
-            JSONObject result = new JSONObject(nflxr.getAllData(query));
-            movies.add(new MovieEntry("x","d"));
+            JSONArray json = new JSONArray(nflxr.getMovie(query));
+            addJsonsToList(json);
         } catch (IOException e) {
-            e.printStackTrace();
+        }
+        try {
+            JSONArray json = new JSONArray(nflxr.getActorData(query));
+            addJsonsToList(json);
+        } catch (IOException e) {
+        }
+        try {
+            JSONArray json = new JSONArray(nflxr.getDirectorData(query));
+            addJsonsToList(json);
+        } catch (IOException e) {
         }
         return movies;
     }
